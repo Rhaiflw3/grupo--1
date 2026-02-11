@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Sistema Académico UAC</title>
+    <style>
+        :root {
+            --primary: #003366; /* Azul UAC aproximado */
+            --secondary: #D4AF37; /* Dorado/Amarillo */
+            --accent: #E74C3C;
+            --light: #f4f7f6;
+            --text: #2c3e50;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e9ecef;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* Header Section */
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        header h2 {
+            font-weight: 300;
+            color: var(--secondary);
+            margin-top: 10px;
+        }
+
+        .team-info {
+            background: #002244;
+            color: #ddd;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        /* Grid Layout */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-left: 5px solid var(--primary);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: var(--primary);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        /* Schema Visualization */
+        .schema-section {
+            background: var(--light);
+            padding: 30px;
+            text-align: center;
+        }
+
+        .schema-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .entity {
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 180px;
+            text-align: left;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .entity-header {
+            background: var(--primary);
+            color: white;
+            padding: 8px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .entity ul {
+            list-style: none;
+            padding: 10px;
+            margin: 0;
+            font-size: 0.85em;
+        }
+
+        .entity li {
+            border-bottom: 1px solid #eee;
+            padding: 3px 0;
+        }
+        
+        .pk { color: var(--accent); font-weight: bold; }
+
+        /* Tables & Data */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+        
+        th { background: var(--secondary); color: var(--primary); padding: 5px; }
+        td { border-bottom: 1px solid #eee; padding: 5px; }
+
+        /* Suggestions List */
+        .suggestions ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .suggestions li::before {
+            content: "✓";
+            color: var(--secondary);
+            font-weight: bold;
+            display: inline-block; 
+            width: 1.5em;
+            margin-left: -1.5em;
+        }
+        .suggestions li {
+            margin-bottom: 10px;
+            padding-left: 1.5em;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #eee;
+            font-size: 0.8em;
+            color: #666;
+        }
+
+        .cite-badge {
+            font-size: 0.7em;
+            color: #888;
+            vertical-align: super;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <header>
+        <h1>Sistema Académico</h1>
+        <h2>Universidad Andina del Cusco</h2>
+        <p>Facultad de Ingeniería y Arquitectura - EP de Ingeniería de Sistemas </p>
+    </header>
+
+    <div class="team-info">
+        <strong>Equipo 1:</strong> Flores Bocangel, Canaza Coricasa, Flórez Hurtado, Gil Condori <br>
+        <strong>Asignatura:</strong> Modelado de base de datos | <strong>Docente:</strong> Hugo Espetia Huamanga 
+    </div>
+
+    <div class="grid-layout">
+        <div class="card">
+            <h3>🎯 Objetivo</h3>
+            <p>Organizar y gestionar de manera eficiente la información relacionada con los alumnos, docentes, asignaturas y la carga académica, estableciendo relaciones claras entre los procesos educativos[cite: 5, 6].</p>
+        </div>
+        <div class="card">
+            <h3>🛠️ Herramienta</h3>
+            <p>Se utilizó <strong>Power Pivot</strong> para modelar las relaciones entre las entidades y asegurar la integridad de los datos académicos.</p>
+        </div>
+    </div>
+
+    <div class="schema-section">
+        <h3>📂 Modelo de Datos (Esquema Relacional)</h3>
+        <p>Estructura de la base de datos diseñada para conectar Docentes, Alumnos y Notas.</p>
+        
+        <div class="schema-container">
+            <div class="entity">
+                <div class="entity-header">Docente</div>
+                <ul>
+                    <li><span class="pk">PK</span> CodDocente</li>
+                    <li>Nombres</li>
+                    <li>Apellidos</li>
+                    <li>Correo</li>
+                    <li>CodAsignatura</li>
+                </ul>
+            </div>
+
+            <div class="entity">
+                <div class="entity-header">Carga</div>
+                <ul>
+                    <li><span class="pk">PK</span> IdCarga</li>
+                    <li>CodAsignatura</li>
+                    <li>CodDocente</li>
+                </ul>
+            </div>
+
+            <div class="entity">
+                <div class="entity-header">Asignatura</div>
+                <ul>
+                    <li><span class="pk">PK</span> CodAsignatura</li>
+                    <li>Nombre Asignatura</li>
+                </ul>
+            </div>
+
+            <div class="entity">
+                <div class="entity-header">Alumno</div>
+                <ul>
+                    <li><span class="pk">PK</span> CodAlumno</li>
+                    <li>Nombres/Apellidos</li>
+                    <li>DNI</li>
+                    <li>EP (Escuela)</li>
+                    <li>Correo</li>
+                </ul>
+            </div>
+
+            <div class="entity">
+                <div class="entity-header">Nota</div>
+                <ul>
+                    <li>CodAsignatura</li>
+                    <li>CodAlumno</li>
+                    <li>Aporte 1</li>
+                    <li>Aporte 2</li>
+                    <li>Aporte 3</li>
+                    <li>Promedio</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-layout">
+        <div class="card">
+            <h3>📚 Asignaturas Registradas</h3>
+            <p>Ejemplos del 3er Semestre[cite: 13, 14]:</p>
+            <table>
+                <tr><th>Código</th><th>Nombre</th></tr>
+                <tr><td>AS001</td><td>Pensamiento Filosófico</td></tr>
+                <tr><td>AS002</td><td>Cálculo II</td></tr>
+                <tr><td>AS003</td><td>Física I</td></tr>
+                <tr><td>AS006</td><td>Algorítmica POO</td></tr>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3>📊 Sistema de Calificación</h3>
+            <p>El sistema calcula automáticamente el promedio basado en tres aportes parciales[cite: 16].</p>
+            <div style="background:#eef; padding:10px; border-radius:5px; text-align:center; margin-top:10px;">
+                <strong>Ejemplo de Cálculo:</strong><br>
+                Aporte 1 (15) + Aporte 2 (14) + Aporte 3 (10)<br>
+                = <strong>Promedio (13)</strong>
+            </div>
+        </div>
+    </div>
+
+    <div class="card" style="margin: 20px; border-left-color: var(--secondary);">
+        <h3>🚀 Conclusiones y Sugerencias</h3>
+        <div class="suggestions">
+            <p>El sistema demostró que una correcta estructuración de datos evita errores y mejora el acceso a la información[cite: 21]. Para el futuro se sugiere:</p>
+            <ul>
+                <li><strong>Implementación Real:</strong> Desplegar en un entorno real para validar efectividad[cite: 22].</li>
+                <li><strong>Seguridad:</strong> Protocolos de respaldo para proteger datos personales[cite: 23].</li>
+                <li><strong>Capacitación:</strong> Entrenar a administrativos y docentes en el uso del sistema[cite: 24].</li>
+                <li><strong>Módulos Extra:</strong> Añadir generación de reportes automáticos y consultas en línea[cite: 26].</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>Generado a partir del informe "Sistema Académico" - Universidad Andina del Cusco (2025-II).<br>
+        Fuente: Documento PDF proporcionado [cite: 1-27].</p>
+    </footer>
+
+</div>
+
+</body>
+</html>
