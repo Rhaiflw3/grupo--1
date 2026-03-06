@@ -1,0 +1,52 @@
+----crear la base de datos Registro de asistencia de clientes del gimnasio ‘Titanium’
+-- autor: Rhai Flores
+-- fecha: 6/03/26
+
+-- 1. Tabla Cliente
+CREATE TABLE TCliente
+(
+    idC CHAR(5) PRIMARY KEY, 
+    tipoDocumC VARCHAR(20),
+    nroDocumC VARCHAR(20) UNIQUE NOT NULL, 
+    nombresC VARCHAR(50) NOT NULL,  
+    paternoC VARCHAR(50) NOT NULL, 
+    maternoC VARCHAR(50),
+    generoC CHAR(1),
+    fechaNacimC DATE,
+    enfermedadesC TEXT, 
+    celularC VARCHAR(15)
+);
+
+-- 2. Tabla Disciplina
+CREATE TABLE TDisciplina
+(
+    idD CHAR(5) PRIMARY KEY,
+    nombreD VARCHAR(50) UNIQUE NOT NULL,  
+    descripcionD TEXT
+);
+
+-- 3. Tabla GrupoDisciplina
+CREATE TABLE TGrupoDisciplina
+(
+    idG CHAR(5) PRIMARY KEY,
+    nombreG VARCHAR(50) NOT NULL,          
+    fechaInicioG DATE,
+    fechaFinG DATE,
+    idD CHAR(5) NOT NULL,                  
+    FOREIGN KEY(idD) REFERENCES TDisciplina(idD)
+);
+
+-- 4. Tabla Asistencia
+CREATE TABLE TAsistencia
+(
+    idA CHAR(5) PRIMARY KEY,
+    fechaA DATE NOT NULL,                  
+    diaA VARCHAR(15),
+    esferiadoA BOOLEAN,
+    asistioA BOOLEAN,
+    horaEntradaA TIME,
+    idC CHAR(5) NOT NULL,                 
+    idG CHAR(5) NOT NULL,                  
+    FOREIGN KEY(idC) REFERENCES TCliente(idC),
+    FOREIGN KEY(idG) REFERENCES TGrupoDisciplina(idG)
+);
