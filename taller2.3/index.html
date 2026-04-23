@@ -96,6 +96,35 @@
             font-size: 0.9rem;
             color: #94a3b8;
         }
+
+        /* Estilos nuevos para la sección que mostrará el archivo SQL */
+        .full-width-card {
+            grid-column: 1 / -1;
+        }
+
+        .script-container {
+            max-height: 400px;
+            overflow-y: auto;
+            background: #000;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 1px solid #334155;
+        }
+
+        /* Estilos para la barra de desplazamiento del contenedor */
+        .script-container::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .script-container::-webkit-scrollbar-track {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        .script-container::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
@@ -126,7 +155,7 @@
             <p>Une 4 tablas mediante <strong>JOIN</strong> para relacionar pacientes con sus enfermedades diagnosticadas de forma automática.</p>
         </div>
 
-        <div class="card" style="grid-column: span 1;">
+        <div class="card">
             <h3><span class="step-number">4</span> Lógica de Exclusión</h3>
             <p>Uso de <strong>NOT IN</strong> para detectar:</p>
             <ul>
@@ -145,12 +174,48 @@
             <h3><span class="step-number">6</span> Verificación</h3>
             <p>Comprobación de integridad mediante <code>SELECT * FROM vista;</code> asegurando que la data virtual sea consistente con las tablas base.</p>
         </div>
+
+        <!-- NUEVA TARJETA: Visualizador del archivo taller2.3.sql -->
+        <div class="card full-width-card">
+            <h3><span class="step-number">7</span> Script del Repositorio: taller2.3.sql</h3>
+            <p>A continuación se muestra el código fuente cargado directamente desde el archivo <code>taller2.3.sql</code> del repositorio:</p>
+            
+            <div class="script-container">
+                <pre><code id="sql-file-viewer" style="color: #d1d5db; font-family: 'Courier New', Courier, monospace; font-size: 0.9rem;">Cargando script taller2.3.sql...</code></pre>
+            </div>
+        </div>
     </div>
 
     <div class="footer">
         <p>Desarrollado para el Taller de Modelado de Bases de Datos | 2026</p>
     </div>
 </div>
+
+<script>
+    // Lógica para cargar dinámicamente el archivo 'taller2.3.sql' en GitHub Pages
+    document.addEventListener("DOMContentLoaded", () => {
+        // Al estar en Github Pages, el archivo debería estar accesible mediante su ruta relativa.
+        // Asegúrate de que 'taller2.3.sql' se encuentre en el mismo directorio (carpeta) que este 'index.html'.
+        fetch('taller2.3.sql')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('No se pudo encontrar el archivo.');
+                }
+                return response.text();
+            })
+            .then(data => {
+                // Insertamos el contenido SQL recabado de Github directamente en nuestra etiqueta code
+                document.getElementById('sql-file-viewer').textContent = data;
+            })
+            .catch(error => {
+                // En caso de fallar o si se abre desde local (protocolo file://) mostrará este mensaje de error
+                document.getElementById('sql-file-viewer').textContent = 
+                    '-- Error al intentar cargar el archivo.\n' +
+                    '-- Asegúrate de que "taller2.3.sql" esté junto a tu index.html y hayas subido los cambios a GitHub Pages.\n' +
+                    '-- Detalles del error: ' + error.message;
+            });
+    });
+</script>
 
 </body>
 </html>
